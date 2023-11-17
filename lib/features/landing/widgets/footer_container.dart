@@ -7,45 +7,97 @@ class FooterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.grey[200],
+      color: Colors.black,
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Homly',
-                style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              Row(
+              Column(
                 children: [
-                  IconButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateColor.resolveWith(
-                          (states) => Colors.white),
+                  Container(
+                    width: 150,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    color: Colors.grey[700],
+                    child: const Text(
+                      'COLOMBIA',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
-                    icon: const FaIcon(FontAwesomeIcons.facebook),
-                    onPressed: () {},
                   ),
-                  IconButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateColor.resolveWith(
-                          (states) => Colors.white),
-                    ),
-                    icon: const FaIcon(FontAwesomeIcons.twitter),
-                    onPressed: () {},
+                  const SizedBox(
+                    height: 8,
                   ),
-                  IconButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateColor.resolveWith(
-                          (states) => Colors.white),
+                  Container(
+                    width: 150,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    color: Colors.grey[700],
+                    child: const Text(
+                      'ESPAÑA',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
-                    icon: const FaIcon(FontAwesomeIcons.instagram),
-                    onPressed: () {},
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.white),
+                        ),
+                        icon: const FaIcon(FontAwesomeIcons.facebook),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.white),
+                        ),
+                        icon: const FaIcon(FontAwesomeIcons.twitter),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.white),
+                        ),
+                        icon: const FaIcon(FontAwesomeIcons.instagram),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    '© ${DateTime.now().year} Homly by KOV solutions',
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/logos/homly-08.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Image.asset(
+                    'assets/logos/homly-name.png',
+                    height: 30,
                   ),
                 ],
               ),

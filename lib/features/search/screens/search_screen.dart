@@ -44,128 +44,153 @@ class _SearchPageState extends ConsumerState<SearchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1D1D1D),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
         title: InkWell(
           onTap: () {
             context.goNamed(LandingScreen.routeName);
           },
-          child: const Text(
-            'Homly',
-            style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
+          child: Image.asset(
+            'assets/logos/homly-04-resized.png',
+            height: 40,
+            filterQuality: FilterQuality.high,
           ),
         ),
       ),
-      body: Row(
+      body: Column(
         children: [
-          ResponsiveVisibility(
-            hiddenConditions: [
-              Condition.smallerThan(
-                name: TABLET,
-                value: size.width,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            height: size.height * 0.1,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey[300]!,
+                ),
               ),
-            ],
-            child: SizedBox(
-              width: size.width * 0.5,
-              child: Consumer(
-                builder: (context, ref, child) {
-                  final propertiesState = ref.watch(propertiesProvider);
-                  return GoogleMap(
-                    initialCameraPosition: _kGooglePlex,
-                    onMapCreated: _controller.complete,
-                    markers: propertiesState.maybeWhen(
-                      orElse: () => const {},
-                      data: (properties) => properties
-                          .where(
-                        (element) => element.type == widget.propertyType,
-                      )
-                          .map((property) {
-                        return Marker(
-                          markerId: MarkerId(property.id),
-                          position: LatLng(
-                            double.parse(property.latitude),
-                            double.parse(property.longitude),
-                          ),
-                        );
-                      }).toSet(),
-                    ),
-                  );
-                },
-              ),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SearchBar(
+                  hintText: 'Buscar por ubicación, barrio, ciudad, etc.',
+                ),
+                Text('Filtros'),
+              ],
             ),
           ),
-          SizedBox(
-            width: ResponsiveValue(
-              context,
-              defaultValue: size.width * 0.5,
-              conditionalValues: [
-                Condition.smallerThan(
-                  name: TABLET,
-                  value: size.width,
-                ),
-              ],
-            ).value,
-            height: size.height,
-            child: Consumer(
-              builder: (context, ref, child) {
-                final propertiesState = ref.watch(propertiesProvider);
-                return propertiesState.when(
-                  data: (properties) {
-                    final filterProperties = properties
-                        .where(
-                          (element) => element.type == widget.propertyType,
-                        )
-                        .toList();
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: filterProperties.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.5,
-                      ),
-                      itemBuilder: (context, index) {
-                        return PropertyContainer(
-                          property: filterProperties[index],
-                        );
-                      },
-                    );
-                  },
-                  error: (_, __) {
-                    return const Center(child: Text('Error'));
-                  },
-                  loading: () {
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.5,
-                      ),
-                      itemBuilder: (context, index) {
-                        return Shimmer.fromColors(
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[100]!,
-                          child: Container(
-                            margin: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+          Expanded(
+            child: Row(
+              children: [
+                ResponsiveVisibility(
+                  hiddenConditions: [
+                    Condition.smallerThan(
+                      name: TABLET,
+                      value: size.width,
+                    ),
+                  ],
+                  child: SizedBox(
+                    width: size.width * 0.5,
+                    child: Consumer(
+                      builder: (context, ref, child) {
+                        final propertiesState = ref.watch(propertiesProvider);
+                        return GoogleMap(
+                          initialCameraPosition: _kGooglePlex,
+                          onMapCreated: _controller.complete,
+                          markers: propertiesState.maybeWhen(
+                            orElse: () => const {},
+                            data: (properties) => properties
+                                .where(
+                              (element) => element.type == widget.propertyType,
+                            )
+                                .map((property) {
+                              return Marker(
+                                markerId: MarkerId(property.id),
+                                position: LatLng(
+                                  double.parse(property.latitude),
+                                  double.parse(property.longitude),
+                                ),
+                              );
+                            }).toSet(),
                           ),
                         );
                       },
-                    );
-                  },
-                );
-              },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: ResponsiveValue(
+                    context,
+                    defaultValue: size.width * 0.5,
+                    conditionalValues: [
+                      Condition.smallerThan(
+                        name: TABLET,
+                        value: size.width,
+                      ),
+                    ],
+                  ).value,
+                  height: size.height,
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      final propertiesState = ref.watch(propertiesProvider);
+                      return propertiesState.when(
+                        data: (properties) {
+                          final filterProperties = properties
+                              .where(
+                                (element) =>
+                                    element.type == widget.propertyType,
+                              )
+                              .toList();
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: filterProperties.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.5,
+                            ),
+                            itemBuilder: (context, index) {
+                              return PropertyContainer(
+                                property: filterProperties[index],
+                              );
+                            },
+                          );
+                        },
+                        error: (_, __) {
+                          return const Center(child: Text('Error'));
+                        },
+                        loading: () {
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: 10,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.5,
+                            ),
+                            itemBuilder: (context, index) {
+                              return Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: Container(
+                                  margin: const EdgeInsets.all(8.0),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                )
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

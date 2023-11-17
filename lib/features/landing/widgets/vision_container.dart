@@ -9,7 +9,7 @@ class VisionContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: 48,
-        horizontal: 50,
+        horizontal: 24,
       ),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -48,25 +48,36 @@ class VisionContainer extends StatelessWidget {
                 width: 100,
               ),
               Flexible(
-                child: Container(
-                  height: size.height * 0.4,
-                  width: size.height * 0.4,
-                  decoration: const BoxDecoration(boxShadow: [
-                    BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 10,
-                        offset: Offset(0, 10))
-                  ]),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/logos/homly-06.png',
+                      height: 40,
                     ),
-                    child: Image.asset(
-                      'assets/images/vision.jpeg',
-                      fit: BoxFit.fill,
+                    const SizedBox(
+                      height: 16,
                     ),
-                  ),
+                    Container(
+                      height: size.height * 0.3,
+                      width: size.height * 0.3,
+                      decoration: const BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 10,
+                            offset: Offset(0, 10))
+                      ]),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/images/vision.jpeg',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               )
             ],

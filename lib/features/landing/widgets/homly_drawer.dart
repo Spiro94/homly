@@ -17,8 +17,8 @@ class HomlyDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '¿Qué quieres buscar hoy?',
-              style: Theme.of(context).textTheme.headlineMedium,
+              '¿Qué buscas hoy?',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(
               height: 60,

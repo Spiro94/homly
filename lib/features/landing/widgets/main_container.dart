@@ -20,11 +20,10 @@ class MainContainer extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: (size.height - (appBarHeight ?? 0)) * 0.8,
-            width: size.width * 0.9,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: const DecorationImage(
+            height: (size.height - (appBarHeight ?? 0)),
+            width: size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
                 image: AssetImage('assets/images/brick_house.jpg'),
                 fit: BoxFit.fill,
               ),
@@ -63,6 +62,14 @@ class MainContainer extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 16, left: 16),
+            alignment: Alignment.bottomLeft,
+            child: Image.asset(
+              'assets/logos/homly-08.png',
+              height: 80,
+            ),
+          )
         ],
       ),
     );

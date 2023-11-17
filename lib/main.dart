@@ -43,18 +43,16 @@ class Homly extends ConsumerWidget {
       routerConfig: ref.watch(routerProvider),
       title: 'Homly',
       theme: FlexThemeData.light(
-        scheme: FlexScheme.green,
-        surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-        blendLevel: 7,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 10,
-          blendOnColors: false,
-          useM2StyleDividerInM3: true,
+        colors: const FlexSchemeColor(
+          primary: Colors.white,
+          primaryContainer: Color(0xFFA0C2ED),
+          secondary: Color(0xFFD26900),
+          secondaryContainer: Color(0xFFFFD270),
+          tertiary: Color(0xFF5C5C95),
+          tertiaryContainer: Color(0xFFC8DBF8),
         ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
-        swapLegacyOnMaterial3: true,
-        fontFamily: GoogleFonts.raleway().fontFamily,
+        fontFamily: GoogleFonts.tienne().fontFamily,
       ),
       darkTheme: FlexThemeData.dark(
         scheme: FlexScheme.green,

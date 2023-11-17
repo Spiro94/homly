@@ -24,7 +24,6 @@ class _PropertyContainerState extends State<PropertyContainer> {
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(opacity),
@@ -51,13 +50,16 @@ class _PropertyContainerState extends State<PropertyContainer> {
         },
         onTap: () {},
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Flexible(
+            Expanded(
               child: widget.property.imageUrls.isNotEmpty
                   ? Image.network(
                       widget.property.imageUrls[widget.property.selectedImage],
+                      fit: BoxFit.cover,
                     )
-                  : Image.asset('assets/images/apartment_bg.jpg'),
+                  : Image.asset(
+                      'assets/images/apartment_bg.jpg'), //Change to no image available
             ),
             Padding(
               padding: const EdgeInsets.symmetric(

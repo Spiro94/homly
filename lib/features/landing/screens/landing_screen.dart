@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homly/features/landing/widgets/footer_container.dart';
+import 'package:homly/features/landing/widgets/highlights_container.dart';
 import 'package:homly/features/landing/widgets/homly_drawer.dart';
 import 'package:homly/features/landing/widgets/main_container.dart';
 import 'package:homly/features/landing/widgets/vision_container.dart';
@@ -23,11 +24,11 @@ class _LandingScreenState extends State<LandingScreen> {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF1D1D1D),
+      backgroundColor: Colors.white,
       key: scaffoldKey,
       endDrawer: const HomlyDrawer(),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1D1D1D),
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
@@ -36,12 +37,10 @@ class _LandingScreenState extends State<LandingScreen> {
           onTap: () {
             context.goNamed(LandingScreen.routeName);
           },
-          child: const Text(
-            'Homly',
-            style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
+          child: Image.asset(
+            'assets/logos/homly-04-resized.png',
+            height: 40,
+            filterQuality: FilterQuality.high,
           ),
         ),
       ),
@@ -53,6 +52,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 scaffoldKey.currentState?.openEndDrawer();
               },
             ),
+            const HighlightsContainer(),
             VisionContainer(key: dataKey),
             const FooterContainer()
           ],
