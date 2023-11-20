@@ -6,24 +6,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class EmbeddedView extends StatelessWidget {
-  const EmbeddedView({required this.link, this.radius = 16, super.key});
+class MatterportViewWrapper extends StatelessWidget {
+  const MatterportViewWrapper({required this.link, super.key});
 
   final String link;
-  final double radius;
 
   @override
   Widget build(BuildContext context) {
     return kIsWeb
-        ? _EmbeddedViewWeb(link: link, radius: radius)
-        : _EmbeddedViewMobile(link: link);
+        ? MatterPortViewWeb(link: link)
+        : MatterPortViewMobile(link: link);
   }
 }
 
-class _EmbeddedViewWeb extends StatelessWidget {
-  const _EmbeddedViewWeb({required this.link, required this.radius});
+class MatterPortViewWeb extends StatelessWidget {
+  const MatterPortViewWeb({required this.link, super.key});
   final String link;
-  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +36,20 @@ class _EmbeddedViewWeb extends StatelessWidget {
         ..id = link
         ..style.border = 'none',
     );
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius),
-      child: HtmlElementView(viewType: link),
-    );
+    return HtmlElementView(viewType: link);
   }
 }
 
-class _EmbeddedViewMobile extends StatefulWidget {
-  const _EmbeddedViewMobile({required this.link});
+class MatterPortViewMobile extends StatefulWidget {
+  const MatterPortViewMobile({required this.link, super.key});
 
   final String link;
 
   @override
-  State<_EmbeddedViewMobile> createState() => _EmbeddedViewMobileState();
+  State<MatterPortViewMobile> createState() => _MatterPortViewMobileState();
 }
 
-class _EmbeddedViewMobileState extends State<_EmbeddedViewMobile> {
+class _MatterPortViewMobileState extends State<MatterPortViewMobile> {
   late final WebViewController controller = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))

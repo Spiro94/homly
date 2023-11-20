@@ -47,6 +47,13 @@ class PropertyRepository {
     return properties;
   }
 
+  Future<Property> getProperty(String id) async {
+    final doc = await _firestore.collection('properties').get();
+
+    return Property.fromJson(
+        doc.docs.firstWhere((element) => element['id'] == id).data());
+  }
+
   Future<Unit> createProperty(Property property) async {
     final docRef = _firestore.collection('properties').doc(property.id);
     final userRef = _firestore.collection('users').doc(property.addedBy);
@@ -83,5 +90,7 @@ class PropertyRepository {
 
 final propertyRepositoryProvider = Provider<PropertyRepository>((ref) {
   return PropertyRepository(
-      ref.watch(firestoreProvider), ref.watch(firebaseStorageProvider));
+    ref.watch(firestoreProvider),
+    ref.watch(firebaseStorageProvider),
+  );
 });

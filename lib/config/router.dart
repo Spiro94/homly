@@ -7,11 +7,13 @@ import 'package:homly/features/auth/controllers/auth_controller.dart';
 import 'package:homly/features/auth/screens/email_verification_screen.dart';
 import 'package:homly/features/auth/screens/login_screen.dart';
 import 'package:homly/features/auth/screens/register_screen.dart';
+import 'package:homly/features/common/domain/entities/property.dart';
 import 'package:homly/features/common/domain/enums/enum.dart';
 import 'package:homly/features/common/screens/error_screen.dart';
 import 'package:homly/features/create_property/screens/create_property_screen.dart';
 import 'package:homly/features/home/screens/home_screen.dart';
 import 'package:homly/features/landing/screens/landing_screen.dart';
+import 'package:homly/features/property/property_page.dart';
 import 'package:homly/features/property_visualizer/screens/property_visualizer_screen.dart';
 import 'package:homly/features/search/screens/search_screen.dart';
 
@@ -87,35 +89,44 @@ class RouterListenableNotifier extends AsyncNotifier<void>
 
   List<GoRoute> get routes => [
         GoRoute(
-            path: LandingScreen.routePath,
-            name: LandingScreen.routeName,
-            builder: (context, state) => const LandingScreen(),
-            routes: [
-              GoRoute(
-                path: SearchScreen.routePath,
-                name: SearchScreen.routeName,
-                builder: (context, state) => SearchScreen(
-                    propertyType: PropertyType.values.firstWhere((element) =>
-                        element.name.toString() ==
-                        state.pathParameters['propertyType'])),
+          path: LandingScreen.routePath,
+          name: LandingScreen.routeName,
+          builder: (context, state) => const LandingScreen(),
+          routes: [
+            GoRoute(
+              path: SearchScreen.routePath,
+              name: SearchScreen.routeName,
+              builder: (context, state) => SearchScreen(
+                  propertyType: PropertyType.values.firstWhere((element) =>
+                      element.name.toString() ==
+                      state.pathParameters['propertyType'])),
+            ),
+            GoRoute(
+              path: PropertyPage.routePath,
+              name: PropertyPage.routeName,
+              builder: (context, state) => PropertyPage(
+                propertyId: state.pathParameters['id'] as String,
               ),
-            ]),
+            ),
+          ],
+        ),
         GoRoute(
           path: LoginScreen.routePath,
           name: LoginScreen.routeName,
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
-            path: RegisterScreen.routePath,
-            name: RegisterScreen.routeName,
-            builder: (context, state) => const RegisterScreen(),
-            routes: [
-              GoRoute(
-                path: EmailVerificationScreen.routePath,
-                name: EmailVerificationScreen.routeName,
-                builder: (context, state) => const EmailVerificationScreen(),
-              ),
-            ]),
+          path: RegisterScreen.routePath,
+          name: RegisterScreen.routeName,
+          builder: (context, state) => const RegisterScreen(),
+          routes: [
+            GoRoute(
+              path: EmailVerificationScreen.routePath,
+              name: EmailVerificationScreen.routeName,
+              builder: (context, state) => const EmailVerificationScreen(),
+            ),
+          ],
+        ),
         GoRoute(
           path: HomeScreen.routePath,
           name: HomeScreen.routeName,

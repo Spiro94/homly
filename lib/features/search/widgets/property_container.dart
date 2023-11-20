@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:homly/features/common/domain/entities/property.dart';
+import 'package:homly/features/property/property_page.dart';
 
 class PropertyContainer extends StatefulWidget {
   const PropertyContainer({
@@ -48,7 +50,12 @@ class _PropertyContainerState extends State<PropertyContainer> {
             });
           }
         },
-        onTap: () {},
+        onTap: () {
+          context.pushNamed(
+            PropertyPage.routeName,
+            pathParameters: {'id': widget.property.id},
+          );
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
