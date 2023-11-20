@@ -7,7 +7,6 @@ import 'package:homly/features/auth/controllers/auth_controller.dart';
 import 'package:homly/features/auth/screens/email_verification_screen.dart';
 import 'package:homly/features/auth/screens/login_screen.dart';
 import 'package:homly/features/auth/screens/register_screen.dart';
-import 'package:homly/features/common/domain/entities/property.dart';
 import 'package:homly/features/common/domain/enums/enum.dart';
 import 'package:homly/features/common/screens/error_screen.dart';
 import 'package:homly/features/create_property/screens/create_property_screen.dart';
