@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homly/features/common/domain/enums/enum.dart';
 import 'package:homly/features/common/widgets/embedded_view.dart';
 import 'package:homly/features/landing/screens/landing_screen.dart';
 import 'package:homly/features/property/controllers/property_get_controller.dart';
@@ -48,7 +49,7 @@ class _PropertyPageState extends State<PropertyPage> {
             return ListView(
               children: [
                 SizedBox(
-                  height: size.height * 0.9,
+                  height: size.height * 0.8,
                   child: clicked
                       ? EmbeddedView(
                           link:
@@ -56,11 +57,9 @@ class _PropertyPageState extends State<PropertyPage> {
                           radius: 0,
                         )
                       : Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: AssetImage(
-                              'assets/images/background_view.png', //TODO: Save the image in firebase as the background view
-                            ),
+                            image: NetworkImage(property.imageUrls.first),
                             fit: BoxFit.fill,
                           )),
                           child: Stack(
@@ -75,10 +74,10 @@ class _PropertyPageState extends State<PropertyPage> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('assets/images/huspy-logo.png'),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
+                                  // Image.asset('assets/images/huspy-logo.png'),
+                                  // const SizedBox(
+                                  //   height: 16,
+                                  // ),
                                   Text(
                                     property.name,
                                     style: Theme.of(context)
@@ -102,7 +101,7 @@ class _PropertyPageState extends State<PropertyPage> {
                                     ),
                                   ),
                                   Text(
-                                    'Click to Start Tour',
+                                    'Haz click para iniciar el tour virtual',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge!
@@ -157,15 +156,8 @@ class _PropertyPageState extends State<PropertyPage> {
                                   children: [
                                     Column(
                                       children: [
-                                        const Text(
-                                          r'$1,585,000',
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
                                         Text(
-                                          property.type.name,
+                                          property.type.nameToEs(),
                                           style: const TextStyle(
                                             fontSize: 20,
                                           ),
@@ -192,7 +184,7 @@ class _PropertyPageState extends State<PropertyPage> {
                                           height: 4,
                                         ),
                                         const Text(
-                                          'Bedrooms',
+                                          'Habitaciones',
                                         ),
                                       ],
                                     ),
@@ -216,7 +208,7 @@ class _PropertyPageState extends State<PropertyPage> {
                                           height: 4,
                                         ),
                                         const Text(
-                                          'Full Bathrooms',
+                                          'Baños',
                                         ),
                                       ],
                                     ),
@@ -238,7 +230,7 @@ class _PropertyPageState extends State<PropertyPage> {
                             Column(
                               children: [
                                 const Text(
-                                  'Listing Agent',
+                                  'Agente inmobiliario',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -260,7 +252,7 @@ class _PropertyPageState extends State<PropertyPage> {
                                   ),
                                   onPressed: () {},
                                   icon: const Icon(Icons.send),
-                                  label: const Text('Send message'),
+                                  label: const Text('Enviar mensaje'),
                                 )
                               ],
                             ),
@@ -280,5 +272,18 @@ class _PropertyPageState extends State<PropertyPage> {
         },
       ),
     );
+  }
+}
+
+extension on PropertyType {
+  String nameToEs() {
+    switch (this) {
+      case PropertyType.rent:
+        return 'Alquiler';
+      case PropertyType.buy:
+        return 'Compra';
+      case PropertyType.vacation:
+        return 'Vacacional';
+    }
   }
 }
