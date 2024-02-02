@@ -24,7 +24,7 @@ class MainContainer extends StatelessWidget {
             width: size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/brick_house.jpg'),
+                image: AssetImage('assets/images/new_apt.jpg'),
                 fit: BoxFit.fill,
               ),
             ),

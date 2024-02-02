@@ -38,7 +38,7 @@ class _LandingScreenState extends State<LandingScreen> {
             context.goNamed(LandingScreen.routeName);
           },
           child: Image.asset(
-            'assets/logos/homly-04-resized.png',
+            'assets/logos/homly_new.png',
             height: 40,
             filterQuality: FilterQuality.high,
           ),

@@ -36,7 +36,7 @@ class _PropertyPageState extends State<PropertyPage> {
             context.goNamed(LandingScreen.routeName);
           },
           child: Image.asset(
-            'assets/logos/homly-04-resized.png',
+            'assets/logos/homly_new.png',
             height: 40,
             filterQuality: FilterQuality.high,
           ),
@@ -74,10 +74,10 @@ class _PropertyPageState extends State<PropertyPage> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  // Image.asset('assets/images/huspy-logo.png'),
-                                  // const SizedBox(
-                                  //   height: 16,
-                                  // ),
+                                  Image.asset('assets/images/huspy-logo.png'),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
                                   Text(
                                     property.name,
                                     style: Theme.of(context)

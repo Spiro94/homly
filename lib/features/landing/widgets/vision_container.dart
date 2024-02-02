@@ -51,11 +51,11 @@ class VisionContainer extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      'assets/logos/homly-06.png',
-                      height: 40,
+                      'assets/logos/homly_new.png',
+                      height: 50,
                     ),
                     const SizedBox(
-                      height: 16,
+                      height: 8,
                     ),
                     Container(
                       height: size.height * 0.3,

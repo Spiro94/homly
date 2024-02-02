@@ -86,21 +86,32 @@ class FooterContainer extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/logos/homly-08.png',
-                    height: 60,
+              Container(
+                height: 80,
+                width: 100,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: AssetImage('assets/logos/homly_new.png'),
+                    fit: BoxFit.contain,
                   ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Image.asset(
-                    'assets/logos/homly-name.png',
-                    height: 30,
-                  ),
-                ],
+                ),
               ),
+              // Column(
+              //   children: [
+              //     Image.asset(
+              //       'assets/logos/homly-08.png',
+              //       height: 60,
+              //     ),
+              //     const SizedBox(
+              //       height: 4,
+              //     ),
+              //     Image.asset(
+              //       'assets/logos/homly-name.png',
+              //       height: 30,
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ],
